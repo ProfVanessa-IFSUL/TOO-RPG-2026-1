@@ -26,9 +26,9 @@ class Personagem:
     @nome.setter
     def nome(self, valor):
         if valor and valor.strip():
-            self.__nome = valor.strip()
+            self.__nome = valor.strip().title()
         else:
-            raise ValueError("nome errado")
+            raise ValueError("Nome inválido")
 
     def __eq__(self, other):
         return isinstance(other, Personagem) and self.nome == other.nome
@@ -37,7 +37,8 @@ class Personagem:
         return f"personagem: {self.nome} | nivel: {self.nivel}"
 
     def exibir_dados(self):
-        print(f"nome: {self.nome}")
-        print(f"nivel: {self.nivel}")
-        print(f"vida: {self.vida}")
-        print(f"XP: {self.xp}")
+        msg = (f"nome: {self.nome}\n")
+        msg += (f"nivel: {self.nivel}\n")
+        msg += (f"vida: {self.vida}\n")
+        msg += (f"XP: {self.xp}\n")
+        return msg

@@ -65,7 +65,8 @@ class Missao:
         return f"missao: {self.nome} | status: {self.status}"
 
     def exibir_dados(self):
-        print(f"nome: {self.nome}")
-        print(f"descricao: {self.descricao}")
-        print(f"recompensa: {self.recompensa}")
-        print(f"status: {self.status}")
+        msg = (f"nome: {self.nome}\n")
+        msg += (f"descricao: {self.descricao}\n")
+        msg += (f"recompensa: {self.recompensa}\n")
+        msg += (f"status: {self.status}")
+        return msg

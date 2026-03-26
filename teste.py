@@ -3,12 +3,12 @@ from Personagem import Personagem
 
 print("Cadastro de Personagem")
 p = Personagem("Malibu")
-p.exibir_dados()
+print(p.exibir_dados())
 
 
 
 
 print("\nCadastro de Missão")
 m = Missao("Conquista de Território", "Conquista de Território visinho", 50)
-m.exibir_dados()
+print(m.exibir_dados())
 
