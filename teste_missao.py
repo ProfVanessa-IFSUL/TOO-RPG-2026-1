@@ -16,3 +16,8 @@ print()
 print(missao_coleta.exibir_dados())
 print()
 print(missao_exploracao.exibir_dados())
+
+
+missao = Missao("Teste Missao", "Teste missao abstrada", 10)
+print(missao.exibir_dados())
+

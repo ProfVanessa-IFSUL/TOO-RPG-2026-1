@@ -1,8 +1,7 @@
 from Status import Status
+from abc import ABC, abstractmethod
 
-
-class Missao:
-
+class Missao(ABC):
     def __init__(self, nome, descricao:str, recompensa, status:Status=Status.PENDENTE):
         self.__nome = None
         self.__descricao = None
@@ -20,7 +19,7 @@ class Missao:
     @nome.setter
     def nome(self, valor):
         if valor and valor.strip():
-            self.__nome = valor.strip()
+            self.__descricao = valor.strip() if valor else ""
         else:
             raise ValueError("nome invalido")
 
@@ -76,6 +75,7 @@ class Missao:
         else:
             return f"A missão {self.nome} já foi iniciada!!!"
         
+    @abstractmethod
     def concluir_missao(self, valor):
         pass
         '''
@@ -100,7 +100,10 @@ class MissaoColeta(Missao):
     
     @item_necessario.setter
     def item_necessario(self, item:str):
-        self.__item_necessario = item.strip().lower()
+        if item:
+            self.__item_necessario = item.strip().lower()
+        else:
+            raise ValueError("Item inválido")
         
     @property
     def quantidade_item(self):
@@ -119,10 +122,10 @@ class MissaoColeta(Missao):
 
 
     def exibir_dados(self):
-        str = super().exibir_dados()
-        str += f"\nItem necessário: {self.item_necessario}"
-        str += f"\nQuantidade de Item a coletar: {self.quantidade_item}"
-        return str
+        msg = super().exibir_dados()
+        msg += f"\nItem necessário: {self.item_necessario}"
+        msg += f"\nQuantidade de Item a coletar: {self.quantidade_item}"
+        return msg
     
     def concluir_missao(self, valor):
         if isinstance(valor, int):
@@ -220,7 +223,7 @@ class MissaoExploracao(Missao):
             return str
         
     def concluir_missao(self, valor):
-        if isinstance(valor, float):
+        if isinstance(valor, (float,int)):
             if valor >= self.distancia_em_km:
                 if(self.status == Status.EM_ANDAMENTO):
                     self.status = Status.CONCLUIDA

@@ -1,4 +1,4 @@
-from Missao import Missao
+from Missao import Missao, MissaoExploracao
 from Personagem import Personagem
 
 print("Cadastro de Personagem")
@@ -6,9 +6,19 @@ p = Personagem("Malibu")
 print(p.exibir_dados())
 
 
+missao_exploracao = MissaoExploracao("Conquistar o território IFSUL", "Conquistar novo território", 50, "IFSUL", 10)
+
 
 
 print("\nCadastro de Missão")
-m = Missao("Conquista de Território", "Conquista de Território visinho", 50)
-print(m.exibir_dados())
+print(missao_exploracao.exibir_dados())
+
+print("\nvinculando Missão ao personagem")
+p.add_missao(missao_exploracao)
+print(p.exibir_dados())
+
+
+print("\nConcluindo Missão do personagem")
+p.concluir_missao(missao_exploracao,50)
+print(p.exibir_dados())
 
