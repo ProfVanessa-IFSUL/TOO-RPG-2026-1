@@ -13,6 +13,23 @@ class Personagem:
 
 
     @property
+    def vida(self):
+        return self.__vida
+    
+    def __reduzir_vida(self,valor):
+        if self.vida > 0:
+            if (valor <= self.vida):
+                self.__vida -= valor
+                return
+            elif valor <= 0:
+                return ("Valor inválido!! Informe valor positivo")
+            
+            else:
+                self.__vida = 0
+                raise Exception("Game Over")
+            
+
+    @property
     def missoes(self):
         return self.__missoes
 
@@ -31,10 +48,13 @@ class Personagem:
                     self.__xp += m.recompensa
 
                     if self.__xp >= 20:
-                        ganho_vida = self.__xp // 20
-                        self.__nivel += ganho_vida
+                        ganho_nivel = self.__xp // 20
+                        self.__nivel += ganho_nivel
                         self.__xp = self.__xp % 20
-
+                        
+                elif m.status == Status.FRACASSADA:
+                    self.__reduzir_vida(10)
+                    
                 return resultado
 
         raise Exception("Missão não encontrada")

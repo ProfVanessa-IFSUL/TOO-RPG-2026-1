@@ -19,6 +19,6 @@ print(p.exibir_dados())
 
 
 print("\nConcluindo Missão do personagem")
-p.concluir_missao(missao_exploracao,50)
+p.concluir_missao(missao_exploracao,5)
 print(p.exibir_dados())
 
